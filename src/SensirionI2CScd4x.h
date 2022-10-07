@@ -362,9 +362,11 @@ class SensirionI2CScd4x {
      *
      * @note Only available in idle mode.
      *
+     * @param autoDelay Call Arduino delay() if true.
+     *
      * @return 0 on success, an error code otherwise
      */
-    uint16_t measureSingleShot(void);
+    uint16_t measureSingleShot(bool autoDelay = true);
 
     /**
      * measureSingleShotRhtOnly() - On-demand measurement of relative humidity
@@ -372,9 +374,11 @@ class SensirionI2CScd4x {
      *
      * @note Only available in idle mode.
      *
+     * @param autoDelay Call Arduino delay() if true.
+     *
      * @return 0 on success, an error code otherwise
      */
-    uint16_t measureSingleShotRhtOnly(void);
+    uint16_t measureSingleShotRhtOnly(bool autoDelay = true);
 
     /**
      * powerDown() - Put the sensor from idle to sleep mode to reduce current
@@ -394,6 +398,43 @@ class SensirionI2CScd4x {
      * @return 0 on success, an error code otherwise
      */
     uint16_t wakeUp(void);
+
+    /**
+     * getAutomaticSelfCalibrationInitialPeriod() - Get ASC initial period.
+     *
+     * @param initialPeriod ASC initial period.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t getAutomaticSelfCalibrationInitialPeriod(uint16_t& initialPeriod);
+
+    /**
+     * setAutomaticSelfCalibrationInitialPeriod() - Set ASC initial period.
+     *
+     * @param initialPeriod ASC initial period.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t setAutomaticSelfCalibrationInitialPeriod(uint16_t initialPeriod);
+
+    /**
+     * getAutomaticSelfCalibrationStandardPeriod() - Get ASC initial period.
+     *
+     * @param standardPeriod ASC standard period.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t
+    getAutomaticSelfCalibrationStandardPeriod(uint16_t& standardPeriod);
+
+    /**
+     * setAutomaticSelfCalibrationStandardPeriod() - Set ASC initial period.
+     *
+     * @param standardPeriod ASC standard period.
+     *
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t setAutomaticSelfCalibrationStandardPeriod(uint16_t standardPeriod);
 
   private:
     TwoWire* _i2cBus = nullptr;
